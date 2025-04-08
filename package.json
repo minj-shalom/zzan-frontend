@@ -9,17 +9,29 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ant-design/icons": "^5.4.0",
+    "@tanstack/react-query": "^5.67.2",
+    "antd": "^5.24.3",
+    "axios": "^1.8.2",
+    "i18next": "^24.2.2",
+    "next": "15.2.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "next": "15.2.4"
+    "react-error-boundary": "^5.0.0",
+    "react-i18next": "^15.4.1",
+    "react-router-dom": "^7.3.0",
+    "styled-components": "^5.3.6",
+    "styled-reset": "^4.5.2"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@ant-design/v5-patch-for-react-19": "^1.0.3",
+    "@eslint/eslintrc": "^3",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/styled-components": "^5.1.26",
     "eslint": "^9",
     "eslint-config-next": "15.2.4",
-    "@eslint/eslintrc": "^3"
+    "typescript": "^5"
   }
 }
