@@ -39,6 +39,7 @@ export const setFontColor = (fontColor?: fontColorType) => {
 
 export type backgroundColorType =
   | "special"
+  | "specialHover"
   | "white"
   | "black"
   | "weak"
@@ -49,12 +50,14 @@ export type backgroundColorType =
   | "red";
 
 /**
- * @summary  "special" : #2c9ee3 | "white" : #ffffff | "black" : #000000 | "weak" : #f0f0f0 | "semiWeak" : #d9d9d9 | "normal" : #8c8c8c | "green" : #f2fdf5 | "yellow" : #fefcea | "red" : #fcf2f2
+ * @summary  "special" : #2c9ee3 | "specialHover" : #2c9ee3d9 | "white" : #ffffff | "black" : #000000 | "weak" : #f0f0f0 | "semiWeak" : #d9d9d9 | "normal" : #8c8c8c | "green" : #f2fdf5 | "yellow" : #fefcea | "red" : #fcf2f2
  */
 export const setBackgroundColor = (backgroundColor?: backgroundColorType) => {
   switch (backgroundColor) {
     case "special":
       return "var(--background-color-special)";
+    case "specialHover":
+      return "var(--background-color-special-hover)";
     case "white":
       return "var(--background-color-white)";
     case "black":

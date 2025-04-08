@@ -1,3 +1,5 @@
+"use client";
+
 import { useTranslation } from "react-i18next";
 import { Logo } from "../Logo";
 import { MainDrawerContainer, MenuItem, MenuSection } from "./styles";

@@ -30,7 +30,8 @@ ${reset}
     --font-size-large: 20px;
     --font-size-big: 24px;
     --font-size-strong: 32px;
-    --font-size-max: 40px;
+    --font-size-extra-large: 40px;
+    --font-size-max: 60px;
 
     /* font weight */
     --font-weight-thin: 100;
@@ -45,10 +46,12 @@ ${reset}
 
     /* line height */
     --font-line-height-normal: 100%;
+    --font-line-height-medium: 120%;
     --font-line-height-space: 150%;
 
     /* background */
     --background-color-special: #2c9ee3;
+    --background-color-special-hover: #2c9ee3d9;
     --background-color-white: #ffffff;
     --background-color-black: #000000;
     --background-color-weak: #f0f0f0;

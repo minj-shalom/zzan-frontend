@@ -10,9 +10,13 @@ export const MainLayoutBlock = styled.div`
   min-height: calc(100dvh - var(--header-height));
   display: flex;
   flex-direction: column;
+  flex: 1;
 `;
 
 export const PageContainer = styled.div`
+  height: 100%;
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
   flex: 1;
-  padding: 16px;
 `;

@@ -1,3 +1,5 @@
+import { Landing } from "@/components";
+
 export default function Page() {
-  return <div>test</div>;
+  return <Landing />;
 }

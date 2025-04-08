@@ -5,6 +5,15 @@ const nextConfig: NextConfig = {
   compiler: {
     styledComponents: true,
   },
+  async redirects() {
+    return [
+      {
+        source: "/((?!$|all|favicon\\.png|[\\w-]+$).*)",
+        destination: "/",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

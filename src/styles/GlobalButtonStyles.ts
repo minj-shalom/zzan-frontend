@@ -11,7 +11,7 @@ export const ActionButton = styled(Button)<{ disabled?: boolean }>`
   justify-content: center;
   align-items: center;
   gap: 8px;
-  background-color: var(--background-color-purple);
+  background-color: var(--background-color-special);
   border: var(--border-transparent) !important;
   border-radius: var(--border-radius-normal);
   box-shadow: none;
@@ -19,8 +19,9 @@ export const ActionButton = styled(Button)<{ disabled?: boolean }>`
   color: var(--font-color-white) !important;
   transition: var(--transition-fast);
 
-  :hover {
-    background-color: var(--background-color-purple-semi-light) !important;
+  :hover,
+  &:active {
+    background-color: var(--background-color-special-hover) !important;
   }
 
   ${(props) =>

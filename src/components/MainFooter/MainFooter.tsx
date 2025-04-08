@@ -1,3 +1,5 @@
+"use client";
+
 import { CONTACT_EMAIL, GITHUB_URL } from "@/configs";
 import {
   MainFooterContainer,
@@ -28,7 +30,7 @@ export function MainFooter() {
     <MainFooterContainer>
       <ServiceSection>
         <ServiceTitle>{`${t("짠")}!`}</ServiceTitle>
-        <ServiceDescription>{`© ${new Date().getFullYear()} ZZAN`}</ServiceDescription>
+        <ServiceDescription>{`© ${new Date().getFullYear()} ZZAN.`}</ServiceDescription>
         <ServiceDescriptionBlock>
           <ServiceDescription>
             {t("모든 폰트의 저작권은 모두 각 폰트의 저작권자에게 있습니다.")}

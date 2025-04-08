@@ -5,10 +5,11 @@ export type fontSizeType =
   | "large"
   | "big"
   | "strong"
+  | "extraLarge"
   | "max";
 
 /**
- * @summary "small" : 12px | "normal" : 14px | "medium" : 16px  | "large" : 20px  | "big" : 24px  | "strong" : 32px | "max": 40px
+ * @summary "small" : 12px | "normal" : 14px | "medium" : 16px  | "large" : 20px  | "big" : 24px  | "strong" : 32px | "extraLarge" : 40px | "max" : 60px
  */
 export const setFontSize = (fontSize?: fontSizeType) => {
   switch (fontSize) {
@@ -24,6 +25,8 @@ export const setFontSize = (fontSize?: fontSizeType) => {
       return "var(--font-size-big)";
     case "strong":
       return "var(--font-size-strong)";
+    case "extraLarge":
+      return "var(--font-size-extra-large)";
     case "max":
       return "var(--font-size-max)";
     default:
@@ -70,15 +73,17 @@ export const setFontWeight = (fontWeight?: fontWeightType) => {
   }
 };
 
-export type lineHeightType = "normal" | "space";
+export type lineHeightType = "normal" | "medium" | "space";
 
 /**
- * @summary "normal" : 100% | "space" : 150%
+ * @summary "normal" : 100% | "medium" : 120% | "space" : 150%
  */
 export const setLineHeight = (lineHeightType?: lineHeightType) => {
   switch (lineHeightType) {
     case "normal":
       return "var(--font-line-height-normal)";
+    case "medium":
+      return "var(--font-line-height-medium)";
     case "space":
       return "var(--font-line-height-space)";
     default:
