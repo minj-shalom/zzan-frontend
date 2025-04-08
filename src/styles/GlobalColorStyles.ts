@@ -10,7 +10,7 @@ export type fontColorType =
   | "red";
 
 /**
- * @summary  "weak" : #bfbfbf | "semiWeak" : #595959 | "normal" : #262626 | "strong" : #141414 | "white" : #ffffff | "special" : #2c9ee3 | "green" : #4ca154 | "yellow" : #c18d30 | "red" : #ca3a31
+ * @summary  "weak" : #bfbfbf | "semiWeak" : #595959 | "normal" : #262626 | "strong" : #141414 | "white" : #ffffff | "special" : #2c9ee3 | "green" : #4ca154 | "yellow" : #ffd666 | "red" : #ca3a31
  */
 export const setFontColor = (fontColor?: fontColorType) => {
   switch (fontColor) {

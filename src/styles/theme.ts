@@ -77,12 +77,23 @@ const colors = {
 const secondaryColors = {};
 const fontSizes: string[] = [];
 
-export const theme = {
+export const lightTheme = {
+  background: "#ffffff",
+  text: "#000000",
   colors,
   fontSizes,
   secondaryColors,
   media,
 };
 
-export type Theme = typeof theme;
+export const darkTheme = {
+  background: "#141414",
+  text: "#ffffff",
+  colors,
+  fontSizes,
+  secondaryColors,
+  media,
+};
+
+export type Theme = typeof lightTheme;
 export const styled = baseStyled as ThemedStyledInterface<Theme>;

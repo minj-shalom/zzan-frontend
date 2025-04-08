@@ -20,7 +20,7 @@ ${reset}
     --font-color-white: #ffffff;
     --font-color-special: #2c9ee3;
     --font-color-green: #4ca154;
-    --font-color-yellow: #c18d30;
+    --font-color-yellow: #ffd666;
     --font-color-red: #ca3a31;
 
     /* font size */
@@ -91,10 +91,10 @@ ${reset}
     --side-bar-min-width: 70px;
     --mobile-header-height: 60px;
 
-    color: var(--font-color-normal);
+    background-color: ${({ theme }) => theme.background};
     font-size: var(--font-size-normal);
     font-weight: var(--font-weight-normal);
-    background-color: var(--background-color-white);
+    color: ${({ theme }) => theme.text};
   }
   
   html {

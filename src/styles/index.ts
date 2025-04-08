@@ -6,5 +6,6 @@ export * from "./GlobalColorStyles";
 export * from "./GlobalFontStyles";
 export * from "./GlobalStyles";
 export * from "./GlobalTransitionStyles";
+export * from "./ThemeWrapper";
 export * from "./theme";
 export * from "./themed-components";
