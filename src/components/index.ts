@@ -5,3 +5,4 @@ export * from "./MainErrorFallback";
 export * from "./MainFooter";
 export * from "./MainHeader";
 export * from "./NotFound";
+export * from "./Spinner";

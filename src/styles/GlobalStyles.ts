@@ -8,7 +8,7 @@ export const GlobalStyle = createGlobalStyle`
 ${reset}
   * {
     box-sizing: border-box;
-    font-family: "Pretendard" !important;
+    font-family: "Pretendard";
     line-height: 150%;
   }
   :root {
@@ -53,10 +53,14 @@ ${reset}
     --background-color-special: #2c9ee3;
     --background-color-special-hover: #2c9ee3d9;
     --background-color-white: #ffffff;
-    --background-color-black: #000000;
+    --background-color-extra-weak: #fafafa;
     --background-color-weak: #f0f0f0;
     --background-color-semi-weak: #d9d9d9;
     --background-color-normal: #8c8c8c;
+    --background-color-semi-strong: #434343;
+    --background-color-strong: #262626;
+    --background-color-extra-strong: #141414;
+    --background-color-black: #000000;
     --background-color-green: #f2fdf5;
     --background-color-yellow: #fefcea;
     --background-color-red: #fcf2f2;
@@ -68,7 +72,7 @@ ${reset}
     --border-normal: 1px solid #262626;
     --border-strong: 1px solid #141414;
     --border-white: 1px solid #ffffff;
-    --border-purple: 1px solid #722ed1;
+    --border-special: 1px solid #2c9ee3;
     --border-error: 1px solid #f5222d;
     --border-transparent: 1px solid transparent;
 

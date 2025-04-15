@@ -41,16 +41,20 @@ export type backgroundColorType =
   | "special"
   | "specialHover"
   | "white"
-  | "black"
+  | "extraWeak"
   | "weak"
   | "semiWeak"
   | "normal"
+  | "semiStrong"
+  | "strong"
+  | "extraStrong"
+  | "black"
   | "green"
   | "yellow"
   | "red";
 
 /**
- * @summary  "special" : #2c9ee3 | "specialHover" : #2c9ee3d9 | "white" : #ffffff | "black" : #000000 | "weak" : #f0f0f0 | "semiWeak" : #d9d9d9 | "normal" : #8c8c8c | "green" : #f2fdf5 | "yellow" : #fefcea | "red" : #fcf2f2
+ * @summary  "special" : #2c9ee3 | "specialHover" : #2c9ee3d9 | "white" : #ffffff | "extraWeak" : #fafafa | "weak" : #f0f0f0 | "semiWeak" : #d9d9d9 | "normal" : #8c8c8c | "semiStrong" : #434343 | "strong" : #262626 | "extraStrong" : #141414 | "black" : #000000 | "green" : #f2fdf5 | "yellow" : #fefcea | "red" : #fcf2f2
  */
 export const setBackgroundColor = (backgroundColor?: backgroundColorType) => {
   switch (backgroundColor) {
@@ -60,14 +64,22 @@ export const setBackgroundColor = (backgroundColor?: backgroundColorType) => {
       return "var(--background-color-special-hover)";
     case "white":
       return "var(--background-color-white)";
-    case "black":
-      return "var(--background-color-black)";
+    case "extraWeak":
+      return "var(--background-color-extra-weak)";
     case "weak":
       return "var(--background-color-weak)";
     case "semiWeak":
       return "var(--background-color-semi-weak)";
     case "normal":
       return "var(--background-color-normal)";
+    case "semiStrong":
+      return "var(--background-color-semi-strong)";
+    case "strong":
+      return "var(--background-color-strong)";
+    case "extraStrong":
+      return "var(--background-color-extra-strong)";
+    case "black":
+      return "var(--background-color-black)";
     case "green":
       return "var(--background-color-green)";
     case "yellow":

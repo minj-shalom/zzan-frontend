@@ -5,12 +5,12 @@ export type borderType =
   | "normal"
   | "strong"
   | "white"
-  | "purple"
+  | "special"
   | "error"
   | "transparent";
 
 /**
- * @summary  "extraWeak" : 1px solid #f0f0f0 | "weak" : 1px solid #bfbfbf | "semiWeak" : 1px solid #595959 | "normal" : 1px solid #262626 | "strong" : 1px solid #141414 | "white" : 1px solid #ffffff | "purple" : 1px solid #722ed1 | "error" : 1px solid #f5222d | "transparent" : 1px solid transparent
+ * @summary  "extraWeak" : 1px solid #f0f0f0 | "weak" : 1px solid #bfbfbf | "semiWeak" : 1px solid #595959 | "normal" : 1px solid #262626 | "strong" : 1px solid #141414 | "white" : 1px solid #ffffff | "special" : 1px solid #2c9ee3 | "error" : 1px solid #f5222d | "transparent" : 1px solid transparent
  */
 export const setBorder = (borderColor?: borderType) => {
   switch (borderColor) {
@@ -26,8 +26,8 @@ export const setBorder = (borderColor?: borderType) => {
       return "var(--border-strong)";
     case "white":
       return "var(--border-white)";
-    case "purple":
-      return "var(--border-purple)";
+    case "special":
+      return "var(--border-special)";
     case "error":
       return "var(--border-error)";
     case "transparent":
