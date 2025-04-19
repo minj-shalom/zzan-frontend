@@ -1,12 +1,12 @@
 import { axios } from "@/configs";
-import { GET_FONT_LIST_QUERY_KEY } from "@/constants";
+import { SEARCH_FONT_QUERY_KEY } from "@/constants";
 import { BaseQueryParams, PaginationInterface, ResponseType } from "@/types";
 import { FontInterface } from "../types";
 import { infiniteQueryOptions, useInfiniteQuery } from "@tanstack/react-query";
 
-const pageSize = 24;
+const pageSize = 10;
 
-const getFontList = async ({
+const searchFont = async ({
   pageParam = 0,
   query,
 }: {
@@ -18,25 +18,23 @@ const getFontList = async ({
 }> => {
   const response = await axios.get<
     ResponseType<{ data: FontInterface[]; pagination: PaginationInterface }>
-  >("/font", {
+  >("/font/search", {
     params: {
       ...query,
       offset: pageParam,
       limit: query?.limit || pageSize,
-      fontType: query?.fontType || [],
-      fontWeight: query?.fontWeight || 1,
-      license: query?.license || [],
+      search: query?.search,
     },
   });
 
   return response?.data?.data;
 };
 
-export const getFontListQueryOptions = (query?: BaseQueryParams) => {
+export const searchFontQueryOptions = (query?: BaseQueryParams) => {
   return infiniteQueryOptions({
-    queryKey: [GET_FONT_LIST_QUERY_KEY, query],
+    queryKey: [SEARCH_FONT_QUERY_KEY, query],
     initialPageParam: 0,
-    queryFn: ({ pageParam = 0 }) => getFontList({ pageParam, query }),
+    queryFn: ({ pageParam = 0 }) => searchFont({ pageParam, query }),
     getNextPageParam: (lastPage) =>
       lastPage?.pagination?.offset + lastPage?.pagination?.limit >=
       lastPage?.pagination?.count
@@ -45,8 +43,8 @@ export const getFontListQueryOptions = (query?: BaseQueryParams) => {
   });
 };
 
-export function useGetFontList(query?: BaseQueryParams) {
+export function useSearchFont(query?: BaseQueryParams) {
   return useInfiniteQuery({
-    ...getFontListQueryOptions(query),
+    ...searchFontQueryOptions(query),
   });
 }

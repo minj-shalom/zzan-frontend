@@ -2,7 +2,13 @@
 
 import { useTranslation } from "react-i18next";
 import { Logo } from "../Logo";
-import { MainDrawerContainer, MenuItem, MenuSection } from "./styles";
+import {
+  MainDrawerContainer,
+  MenuItem,
+  MenuSection,
+  SearchSection,
+} from "./styles";
+import { SearchFont } from "@/features";
 
 type MainDrawerProps = {
   open: boolean;
@@ -20,6 +26,9 @@ export function MainDrawer({ open, handleClose }: MainDrawerProps) {
       title={<Logo />}
       onClose={handleClose}
     >
+      <SearchSection>
+        <SearchFont />
+      </SearchSection>
       <MenuSection>
         <MenuItem href="/" onClick={handleClose}>
           {`${t("짠")}!`}

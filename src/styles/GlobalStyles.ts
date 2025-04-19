@@ -13,12 +13,13 @@ ${reset}
   }
   :root {
     /* font color */
+    --font-color-special: #2c9ee3;
+    --font-color-white: #ffffff;
     --font-color-weak: #bfbfbf;
     --font-color-semi-weak: #595959;
     --font-color-normal: #262626;
     --font-color-strong: #141414;
-    --font-color-white: #ffffff;
-    --font-color-special: #2c9ee3;
+    --font-color-black: #000000;
     --font-color-green: #4ca154;
     --font-color-yellow: #ffd666;
     --font-color-red: #ca3a31;
@@ -137,5 +138,19 @@ ${reset}
     -khtml-user-drag: none;
     -moz-user-drag: none;
     -o-user-drag: none;
+  }
+
+  .ant-dropdown {
+    border: 1px solid #d9d9d9 !important;
+    border-radius: var(--border-radius-normal) !important;
+    overflow: hidden !important;
+  }
+
+  .ant-dropdown-menu {
+    background-color: ${({ theme }) => theme.background} !important;
+    
+    span {
+      color: ${({ theme }) => theme.text} !important;
+    }
   }
 `;

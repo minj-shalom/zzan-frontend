@@ -1,19 +1,24 @@
 export type fontColorType =
+  | "special"
+  | "white"
   | "weak"
   | "semiWeak"
   | "normal"
   | "strong"
-  | "white"
-  | "special"
+  | "black"
   | "green"
   | "yellow"
   | "red";
 
 /**
- * @summary  "weak" : #bfbfbf | "semiWeak" : #595959 | "normal" : #262626 | "strong" : #141414 | "white" : #ffffff | "special" : #2c9ee3 | "green" : #4ca154 | "yellow" : #ffd666 | "red" : #ca3a31
+ * @summary  "special" : #2c9ee3 | "white" : #ffffff | "weak" : #bfbfbf | "semiWeak" : #595959 | "normal" : #262626 | "strong" : #141414 | "black" : #000000 | "green" : #4ca154 | "yellow" : #ffd666 | "red" : #ca3a31
  */
 export const setFontColor = (fontColor?: fontColorType) => {
   switch (fontColor) {
+    case "special":
+      return "var(--font-color-special)";
+    case "white":
+      return "var(--font-color-white)";
     case "weak":
       return "var(--font-color-weak)";
     case "semiWeak":
@@ -22,10 +27,8 @@ export const setFontColor = (fontColor?: fontColorType) => {
       return "var(--font-color-normal)";
     case "strong":
       return "var(--font-color-strong)";
-    case "white":
-      return "var(--font-color-white)";
-    case "special":
-      return "var(--font-color-special)";
+    case "black":
+      return "var(--font-color-black)";
     case "green":
       return "var(--font-color-green)";
     case "yellow":

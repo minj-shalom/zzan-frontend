@@ -17,6 +17,17 @@ export const MainDrawerContainer = styled(Drawer)`
   .ant-drawer-close {
     color: ${({ theme }) => theme.text} !important;
   }
+
+  .ant-drawer-body {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+`;
+
+export const SearchSection = styled.div`
+  display: flex;
+  justify-content: center;
 `;
 
 export const MenuSection = styled.div`

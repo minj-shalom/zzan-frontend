@@ -1,12 +1,12 @@
 "use client";
 
-import { DownOutlined, SearchOutlined, UpOutlined } from "@ant-design/icons";
+import { DownOutlined, EditOutlined, UpOutlined } from "@ant-design/icons";
 import {
   DropdownBlock,
   DropdownButton,
   FontListQueryContainer,
   FilterSection,
-  SearchBar,
+  PreviewTextBar,
   SliderBlock,
   SliderKey,
   SliderValue,
@@ -25,13 +25,14 @@ type FontListQueryProps = {
   fontTypeOpen: boolean;
   licenseOpen: boolean;
   orderByOpen: boolean;
+  previewText: string;
   fontSize: number;
   handleDispatch: (action: QueryParamsActions) => void;
-  handleSearch: (search: string) => void;
   handleFontTypeOpen: (state: boolean) => void;
   handleLicenseOpen: (state: boolean) => void;
   handleOrderByOpen: (state: boolean) => void;
-  handleFontSize: (value: number) => void;
+  handlePreviewTextChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleFontSizeChange: (value: number) => void;
 };
 
 export function FontListQuery({
@@ -39,13 +40,14 @@ export function FontListQuery({
   fontTypeOpen,
   licenseOpen,
   orderByOpen,
+  previewText,
   fontSize,
   handleDispatch,
-  handleSearch,
   handleFontTypeOpen,
   handleLicenseOpen,
   handleOrderByOpen,
-  handleFontSize,
+  handlePreviewTextChange,
+  handleFontSizeChange,
 }: FontListQueryProps) {
   const { t } = useTranslation();
 
@@ -174,10 +176,12 @@ export function FontListQuery({
   return (
     <FontListQueryContainer>
       <FilterSection>
-        <SearchBar
-          placeholder={t("폰트 이름 및 제작자로 검색")}
-          suffix={<SearchOutlined />}
-          onChange={(e) => handleSearch(e?.target?.value)}
+        <PreviewTextBar
+          value={previewText}
+          placeholder={t("문구 적고 폰트 미리보기")}
+          suffix={<EditOutlined />}
+          allowClear
+          onChange={handlePreviewTextChange}
         />
         <DropdownBlock>
           <Dropdown
@@ -228,7 +232,7 @@ export function FontListQuery({
             value={fontSize}
             min={10}
             max={100}
-            onChange={handleFontSize}
+            onChange={handleFontSizeChange}
           />
           <SliderValue>{`${fontSize} px`}</SliderValue>
         </SliderBlock>

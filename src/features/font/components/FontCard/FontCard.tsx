@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslation } from "react-i18next";
-import { FontInterface } from "../../types";
+import { FontInterface, FontTypeEnum } from "../../types";
 import {
   FontAuthor,
   FontCardBody,
@@ -15,14 +15,19 @@ import {
 } from "./styles";
 import { useTheme } from "next-themes";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 type FontCardProps = {
   data: FontInterface;
+  debouncedPreviewText: string;
   fontSize: number;
 };
 
-export function FontCard({ data, fontSize }: FontCardProps) {
+export const FontCard = React.memo(function FontCard({
+  data,
+  debouncedPreviewText,
+  fontSize,
+}: FontCardProps) {
   const { t } = useTranslation();
   const { resolvedTheme } = useTheme();
   const router = useRouter();
@@ -30,29 +35,29 @@ export function FontCard({ data, fontSize }: FontCardProps) {
   const match = data?.font_face.match(/font-family:\s*['"]?([^;'"]+)['"]?;/);
   const fontFamily = match?.[1];
 
+  const [inputValue, setInputValue] = useState("");
+
   const handleClick = () => {
     router.push(`/font/${data?.id}`);
+  };
+
+  const handleInputValueChange = (value: string) => {
+    setInputValue(value);
   };
 
   useEffect(() => {
     const styleId = `font-${data.id}`;
     if (document.getElementById(styleId)) return;
-
     const fontFace = data.font_face.replace(/\\n/g, "\n");
-
     const importMatch = fontFace.match(/@import\s+url\(['"]?(.+?)['"]?\);?/);
     if (importMatch) {
       const link = document.createElement("link");
       link.id = styleId;
       link.rel = "stylesheet";
       link.href = importMatch[1];
-      link.onload = () => {
-        console.log(`Font ${data.title} loaded`);
-      };
       document.head.appendChild(link);
       return;
     }
-
     if (fontFace.includes("@font-face")) {
       const style = document.createElement("style");
       style.id = styleId;
@@ -60,6 +65,10 @@ export function FontCard({ data, fontSize }: FontCardProps) {
       document.head.appendChild(style);
     }
   }, [data]);
+
+  useEffect(() => {
+    setInputValue(debouncedPreviewText);
+  }, [debouncedPreviewText]);
 
   return (
     <FontCardContainer $theme={resolvedTheme} $fontFamily={fontFamily}>
@@ -72,8 +81,14 @@ export function FontCard({ data, fontSize }: FontCardProps) {
       </FontCardHeader>
       <FontCardBody>
         <StyledInput
+          value={inputValue}
           variant="borderless"
-          placeholder={t("짠! 세상의 모든 폰트가 여기에.")}
+          placeholder={
+            data?.type === FontTypeEnum.ENGLISH
+              ? t("ZZAN! All the fonts in the world, right here.")
+              : t("짠! 세상의 모든 폰트가 여기에.")
+          }
+          onChange={(e) => handleInputValueChange(e?.target?.value)}
           $fontSize={fontSize}
         />
       </FontCardBody>
@@ -84,4 +99,4 @@ export function FontCard({ data, fontSize }: FontCardProps) {
       </FontCardFooter>
     </FontCardContainer>
   );
-}
+});

@@ -1,6 +1,13 @@
 import { ReactNode } from "react";
 import { AppProvider } from "./provider";
 import { MainLayout } from "./_components/main-layout";
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient,
+} from "@tanstack/react-query";
+import { searchFontListInitialQuery } from "@/constants";
+import { searchFontQueryOptions } from "@/features";
 
 export const metadata = {
   title: "짠!",
@@ -9,11 +16,19 @@ export const metadata = {
 };
 
 const RootLayout = async ({ children }: { children: ReactNode }) => {
+  const queryClient = new QueryClient();
+
+  await queryClient.prefetchInfiniteQuery(
+    searchFontQueryOptions(searchFontListInitialQuery)
+  );
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
         <AppProvider>
-          <MainLayout>{children}</MainLayout>
+          <HydrationBoundary state={dehydrate(queryClient)}>
+            <MainLayout>{children}</MainLayout>
+          </HydrationBoundary>
         </AppProvider>
       </body>
     </html>

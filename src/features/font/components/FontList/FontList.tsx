@@ -9,13 +9,13 @@ import {
 import { Spin } from "antd";
 import { useInView } from "react-intersection-observer";
 import { QueryParamsActions, useQueryParams } from "@/hooks";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useGetFontList } from "../../api";
 import { FontCard } from "../FontCard";
 import { fontListInitialQuery } from "@/constants";
 import { FontListQuery } from "../FontListQuery";
-import { debounceFunction } from "@/utils";
 import { Spinner } from "@/components";
+import { debounce } from "lodash";
 
 export function FontList() {
   const { ref, inView } = useInView();
@@ -30,6 +30,8 @@ export function FontList() {
   const [fontTypeOpen, setFontTypeOpen] = useState(false);
   const [licenseOpen, setLicenseOpen] = useState(false);
   const [orderByOpen, setOrderByOpen] = useState(false);
+  const [previewText, setPreviewText] = useState("");
+  const [debouncedPreviewText, setDebouncedPreviewText] = useState("");
   const [fontSize, setFontSize] = useState(30);
 
   const handlePagination = (page: number) => {
@@ -45,14 +47,6 @@ export function FontList() {
     dispatch(action);
   };
 
-  const handleSearch = debounceFunction((search: string) => {
-    handlePagination(1);
-    dispatch({
-      type: "setSearch",
-      search,
-    });
-  }, 200);
-
   const handleFontTypeOpen = (state: boolean) => {
     setFontTypeOpen(state);
   };
@@ -65,7 +59,23 @@ export function FontList() {
     setOrderByOpen(state);
   };
 
-  const handleFontSize = (value: number) => {
+  const handleDebouncedPreviewTextChange = debounce((newText: string) => {
+    setDebouncedPreviewText(newText);
+  }, 30);
+
+  const handlePreviewTextChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const newText = e.target.value;
+
+      if (newText !== previewText) {
+        setPreviewText(newText);
+        handleDebouncedPreviewTextChange(newText);
+      }
+    },
+    [previewText, handleDebouncedPreviewTextChange]
+  );
+
+  const handleFontSizeChange = (value: number) => {
     setFontSize(value);
   };
 
@@ -82,13 +92,14 @@ export function FontList() {
         fontTypeOpen={fontTypeOpen}
         licenseOpen={licenseOpen}
         orderByOpen={orderByOpen}
+        previewText={previewText}
         fontSize={fontSize}
         handleDispatch={handleDispatch}
-        handleSearch={handleSearch}
         handleFontTypeOpen={handleFontTypeOpen}
         handleLicenseOpen={handleLicenseOpen}
         handleOrderByOpen={handleOrderByOpen}
-        handleFontSize={handleFontSize}
+        handlePreviewTextChange={handlePreviewTextChange}
+        handleFontSizeChange={handleFontSizeChange}
       />
       {fontList?.length === 0 && isLoading && <Spinner />}
       <CardSection>
@@ -96,6 +107,7 @@ export function FontList() {
           <FontCard
             key={`font-item-${index}`}
             data={item}
+            debouncedPreviewText={debouncedPreviewText}
             fontSize={fontSize}
           />
         ))}

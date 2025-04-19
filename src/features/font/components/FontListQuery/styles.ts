@@ -23,7 +23,7 @@ export const FilterSection = styled.div`
   gap: 16px;
 `;
 
-export const SearchBar = styled(Input)`
+export const PreviewTextBar = styled(Input)`
   min-width: 200px;
   height: 40px;
   padding: 4px 24px;
@@ -36,6 +36,10 @@ export const SearchBar = styled(Input)`
     &::placeholder {
       color: ${({ theme }) => theme.text} !important;
     }
+  }
+
+  .ant-input-clear-icon {
+    color: ${({ theme }) => theme.text} !important;
   }
 `;
 

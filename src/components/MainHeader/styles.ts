@@ -1,7 +1,12 @@
 import { setBorder, setFontColor, setFontSize, setFontWeight } from "@/styles";
-import { MenuOutlined, MoonFilled, SunFilled } from "@ant-design/icons";
+import {
+  MenuOutlined,
+  MoonFilled,
+  SearchOutlined,
+  SunFilled,
+} from "@ant-design/icons";
 import Link from "next/link";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const MainHeaderContainer = styled.div`
   position: sticky;
@@ -28,13 +33,31 @@ export const MainHeaderContainer = styled.div`
   `}
 `;
 
-export const MainHeaderBlock = styled.div`
+export const MainHeaderBlock = styled.div<{ $gap?: string }>`
   display: flex;
   align-items: center;
-  gap: 50px;
+  gap: 16px;
+
+  ${(props) =>
+    props?.$gap &&
+    css`
+      gap: ${props?.$gap};
+    `}
 `;
 
-export const StyledMenuOutlined = styled(MenuOutlined)`
+export const MobileLogoBlock = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;
+
+export const MenuButton = styled(MenuOutlined)`
+  font-size: ${setFontSize("large")};
+  cursor: pointer;
+`;
+
+export const SearchButton = styled(SearchOutlined)`
   font-size: ${setFontSize("large")};
   cursor: pointer;
 `;
@@ -43,14 +66,6 @@ export const MenuSection = styled.div`
   display: flex;
   align-items: center;
   gap: 20px;
-`;
-
-export const MenuItem = styled(Link)`
-  white-space: nowrap;
-  font-size: ${setFontSize("medium")};
-  font-weight: ${setFontWeight("medium")};
-  color: ${({ theme }) => theme.text};
-  cursor: pointer;
 `;
 
 export const ThemeButton = styled.div`
@@ -65,4 +80,12 @@ export const StyledSunFilled = styled(SunFilled)`
 export const StyledMoonFilled = styled(MoonFilled)`
   font-size: ${setFontSize("large")};
   color: ${setFontColor("yellow")};
+`;
+
+export const MenuItem = styled(Link)`
+  white-space: nowrap;
+  font-size: ${setFontSize("medium")};
+  font-weight: ${setFontWeight("medium")};
+  color: ${({ theme }) => theme.text};
+  cursor: pointer;
 `;
