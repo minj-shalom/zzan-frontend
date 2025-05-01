@@ -18,13 +18,13 @@ import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 type FontCardProps = {
-  data: FontInterface;
+  font: FontInterface;
   debouncedPreviewText: string;
   fontSize: number;
 };
 
 export const FontCard = React.memo(function FontCard({
-  data,
+  font,
   debouncedPreviewText,
   fontSize,
 }: FontCardProps) {
@@ -32,13 +32,13 @@ export const FontCard = React.memo(function FontCard({
   const { resolvedTheme } = useTheme();
   const router = useRouter();
 
-  const match = data?.font_face.match(/font-family:\s*['"]?([^;'"]+)['"]?;/);
+  const match = font?.font_face?.match(/font-family:\s*['"]?([^;'"]+)['"]?;/);
   const fontFamily = match?.[1];
 
   const [inputValue, setInputValue] = useState("");
 
   const handleClick = () => {
-    router.push(`/font/${data?.id}`);
+    router.push(`/font/${font?.id}`);
   };
 
   const handleInputValueChange = (value: string) => {
@@ -46,10 +46,12 @@ export const FontCard = React.memo(function FontCard({
   };
 
   useEffect(() => {
-    const styleId = `font-${data.id}`;
+    const styleId = `font-${font?.id}`;
     if (document.getElementById(styleId)) return;
-    const fontFace = data.font_face.replace(/\\n/g, "\n");
-    const importMatch = fontFace.match(/@import\s+url\(['"]?(.+?)['"]?\);?/);
+    const fontFaceText = font?.font_face?.replace(/\\n/g, "\n");
+    const importMatch = fontFaceText?.match(
+      /@import\s+url\(['"]?(.+?)['"]?\);?/
+    );
     if (importMatch) {
       const link = document.createElement("link");
       link.id = styleId;
@@ -58,13 +60,13 @@ export const FontCard = React.memo(function FontCard({
       document.head.appendChild(link);
       return;
     }
-    if (fontFace.includes("@font-face")) {
+    if (fontFaceText?.includes("@font-face")) {
       const style = document.createElement("style");
       style.id = styleId;
-      style.innerText = fontFace;
+      style.innerText = fontFaceText;
       document.head.appendChild(style);
     }
-  }, [data]);
+  }, [font]);
 
   useEffect(() => {
     setInputValue(debouncedPreviewText);
@@ -74,8 +76,8 @@ export const FontCard = React.memo(function FontCard({
     <FontCardContainer $theme={resolvedTheme} $fontFamily={fontFamily}>
       <FontCardHeader className="font_card_header" onClick={handleClick}>
         <FontCardHeaderBlock>
-          <FontTitle className="font_title">{data?.title}</FontTitle>
-          <FontAuthor>{data?.author}</FontAuthor>
+          <FontTitle className="font_title">{font?.title}</FontTitle>
+          <FontAuthor>{font?.author}</FontAuthor>
         </FontCardHeaderBlock>
         <StyledRightOutlined className="styled_right_outlined" />
       </FontCardHeader>
@@ -84,7 +86,7 @@ export const FontCard = React.memo(function FontCard({
           value={inputValue}
           variant="borderless"
           placeholder={
-            data?.type === FontTypeEnum.ENGLISH
+            font?.type === FontTypeEnum.ENGLISH
               ? t("ZZAN! All the fonts in the world, right here.")
               : t("짠! 세상의 모든 폰트가 여기에.")
           }
@@ -93,8 +95,8 @@ export const FontCard = React.memo(function FontCard({
         />
       </FontCardBody>
       <FontCardFooter>
-        {data?.font_weight > 1
-          ? t("{{value}}가지 굵기", { value: data?.font_weight })
+        {font?.font_weight > 1
+          ? t("{{value}}가지 굵기", { value: font?.font_weight })
           : null}
       </FontCardFooter>
     </FontCardContainer>

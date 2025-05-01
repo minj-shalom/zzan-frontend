@@ -77,7 +77,7 @@ export function SearchFont() {
   const getSearchResult = () => {
     return [
       ...fontList?.map((item, index) => {
-        const match = item?.font_face.match(
+        const match = item?.font_face?.match(
           /font-family:\s*['"]?([^;'"]+)['"]?;/
         );
         const fontFamily = match?.[1];
@@ -127,10 +127,12 @@ export function SearchFont() {
 
   useEffect(() => {
     fontList?.forEach((item) => {
-      const styleId = `font-${item.id}`;
+      const styleId = `font-${item?.id}`;
       if (document.getElementById(styleId)) return;
-      const fontFace = item.font_face.replace(/\\n/g, "\n");
-      const importMatch = fontFace.match(/@import\s+url\(['"]?(.+?)['"]?\);?/);
+      const fontFaceText = item?.font_face?.replace(/\\n/g, "\n");
+      const importMatch = fontFaceText?.match(
+        /@import\s+url\(['"]?(.+?)['"]?\);?/
+      );
       if (importMatch) {
         const link = document.createElement("link");
         link.id = styleId;
@@ -139,10 +141,10 @@ export function SearchFont() {
         document.head.appendChild(link);
         return;
       }
-      if (fontFace.includes("@font-face")) {
+      if (fontFaceText?.includes("@font-face")) {
         const style = document.createElement("style");
         style.id = styleId;
-        style.innerText = fontFace;
+        style.innerText = fontFaceText;
         document.head.appendChild(style);
       }
     });

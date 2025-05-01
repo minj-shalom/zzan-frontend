@@ -1,16 +1,11 @@
 "use client";
 
-import { DownOutlined, EditOutlined, UpOutlined } from "@ant-design/icons";
+import { DownOutlined, UpOutlined } from "@ant-design/icons";
 import {
   DropdownBlock,
   DropdownButton,
   FontListQueryContainer,
   FilterSection,
-  PreviewTextBar,
-  SliderBlock,
-  SliderKey,
-  SliderValue,
-  StyledSlider,
   SliderSection,
 } from "./styles";
 import { Checkbox, Dropdown } from "antd";
@@ -19,6 +14,7 @@ import { FontLicenseEnum, FontTypeEnum } from "../../types";
 import { getFontLicenseLocales, getFontTypeLocales } from "@/locales";
 import { BaseQueryParams } from "@/types";
 import { QueryParamsActions } from "@/hooks";
+import { MainSlider, PreviewTextBar } from "@/components";
 
 type FontListQueryProps = {
   query: BaseQueryParams;
@@ -72,7 +68,7 @@ export function FontListQuery({
     FontLicenseEnum.EMBEDDING,
     FontLicenseEnum.BI_CI,
     FontLicenseEnum.OFL,
-  ]?.map((item) => ({ key: item, label: getFontLicenseLocales(item) }));
+  ]?.map((item) => ({ key: item, label: getFontLicenseLocales("name", item) }));
 
   const orderByItems: { key: string; label: string; onClick: () => void }[] = [
     {
@@ -164,9 +160,10 @@ export function FontListQuery({
         case 0:
           return t("라이센스");
         case 1:
-          return getFontLicenseLocales(query?.license?.[0]);
+          return getFontLicenseLocales("name", query?.license?.[0]);
         default:
           return `${getFontLicenseLocales(
+            "name",
             query?.license?.[0] as FontLicenseEnum
           )} ${t("외")} ${(query?.license?.length || 0) - 1}${t("개")}`;
       }
@@ -179,9 +176,7 @@ export function FontListQuery({
         <PreviewTextBar
           value={previewText}
           placeholder={t("문구 적고 폰트 미리보기")}
-          suffix={<EditOutlined />}
-          allowClear
-          onChange={handlePreviewTextChange}
+          handleChange={handlePreviewTextChange}
         />
         <DropdownBlock>
           <Dropdown
@@ -226,31 +221,27 @@ export function FontListQuery({
         </DropdownBlock>
       </FilterSection>
       <SliderSection>
-        <SliderBlock>
-          <SliderKey>{t("크기")}</SliderKey>
-          <StyledSlider
-            value={fontSize}
-            min={10}
-            max={100}
-            onChange={handleFontSizeChange}
-          />
-          <SliderValue>{`${fontSize} px`}</SliderValue>
-        </SliderBlock>
-        <SliderBlock>
-          <SliderKey>{t("굵기 개수")}</SliderKey>
-          <StyledSlider
-            value={query?.fontWeight}
-            min={1}
-            max={9}
-            onChange={(e) =>
-              handleDispatch({
-                type: "setFontWeight",
-                fontWeight: e,
-              })
-            }
-          />
-          <SliderValue>{`${query?.fontWeight}${t("가지")}`}</SliderValue>
-        </SliderBlock>
+        <MainSlider
+          min={10}
+          max={100}
+          value={fontSize}
+          sliderKey={t("크기")}
+          sliderValue={`${fontSize} px`}
+          handleChange={handleFontSizeChange}
+        />
+        <MainSlider
+          min={1}
+          max={9}
+          value={query?.fontWeight}
+          sliderKey={t("굵기 개수")}
+          sliderValue={`${query?.fontWeight}${t("가지")}`}
+          handleChange={(e) =>
+            handleDispatch({
+              type: "setFontWeight",
+              fontWeight: e,
+            })
+          }
+        />
       </SliderSection>
     </FontListQueryContainer>
   );

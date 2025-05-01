@@ -105,8 +105,8 @@ export function FontList() {
       <CardSection>
         {fontList?.map((item, index) => (
           <FontCard
-            key={`font-item-${index}`}
-            data={item}
+            key={`font-card-item-${index}`}
+            font={item}
             debouncedPreviewText={debouncedPreviewText}
             fontSize={fontSize}
           />

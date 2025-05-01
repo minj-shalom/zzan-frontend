@@ -6,7 +6,7 @@ import { Button } from "antd";
 export const ActionButton = styled(Button)<{ disabled?: boolean }>`
   width: fit-content;
   height: fit-content;
-  padding: 4px 16px;
+  padding: 6px 12px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -40,7 +40,7 @@ export const ActionButton = styled(Button)<{ disabled?: boolean }>`
 export const NormalButton = styled(Button)<{ disabled?: boolean }>`
   width: fit-content;
   height: fit-content;
-  padding: 4px 16px;
+  padding: 6px 12px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -75,7 +75,7 @@ export const NormalButton = styled(Button)<{ disabled?: boolean }>`
 export const DangerButton = styled(Button)<{ disabled?: boolean }>`
   width: fit-content;
   height: fit-content;
-  padding: 4px 16px;
+  padding: 6px 12px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -108,7 +108,7 @@ export const DangerButton = styled(Button)<{ disabled?: boolean }>`
 export const TextButton = styled.div`
   width: fit-content;
   height: 36px;
-  padding: 4px 16px;
+  padding: 6px 12px;
   display: flex;
   justify-content: center;
   align-items: center;

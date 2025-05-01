@@ -1,3 +1,4 @@
+import { FontFaceInterface } from "./FontFaceInterface";
 import { FontLicenseInterface } from "./FontLicenseInterface";
 import { FontTypeEnum } from "./FontTypeEnum";
 
@@ -8,6 +9,7 @@ export interface FontInterface {
   type: FontTypeEnum;
   font_weight: number;
   font_face: string;
+  font_face_list?: FontFaceInterface[];
   download_url: string;
   license: FontLicenseInterface;
   created_at: string;
