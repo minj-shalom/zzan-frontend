@@ -1,6 +1,6 @@
 "use client";
 
-import { setFontSize, setFontWeight } from "@/styles";
+import { setFontSize, setFontWeight, setLineHeight } from "@/styles";
 import styled from "styled-components";
 
 export const FontLicenseCategoryContainer = styled.div`
@@ -29,9 +29,12 @@ export const ColumnContainer = styled.div`
 `;
 
 export const FontLicenseInfo = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 4px;
   font-size: ${setFontSize("normal")};
   font-weight: ${setFontWeight("light")};
+  line-height: ${setLineHeight("space")};
+  white-space: wrap;
 `;

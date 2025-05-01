@@ -71,6 +71,12 @@ export function FontDetailInfo({ font }: FontDetailInfoProps) {
               {t("{{value}}가지", { value: font?.font_weight })}
             </FontInfoItemValue>
           </FontInfoItem>
+          <FontInfoItem>
+            <FontInfoItemKey>{t("조회수")}</FontInfoItemKey>
+            <FontInfoItemValue>
+              {font?.view?.toLocaleString()}
+            </FontInfoItemValue>
+          </FontInfoItem>
         </FontInfoBlock>
       </FontInfoSection>
       <ActionSection>

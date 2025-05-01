@@ -1,12 +1,11 @@
 "use client";
 
-import { setFontSize, setFontWeight } from "@/styles";
+import { setFontSize, setFontWeight, setLineHeight } from "@/styles";
 import styled, { css } from "styled-components";
 
 export const FontDetailInfoContainer = styled.div`
   width: 100%;
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-start;
   gap: 16px;
@@ -14,11 +13,16 @@ export const FontDetailInfoContainer = styled.div`
   ${({ theme }) => theme.media.mobile`
     flex-direction: column;
   `}
+
+  ${({ theme }) => theme.media.tablet`
+    flex-direction: column;
+  `}
 `;
 
 export const FontInfoSection = styled.div<{
   $fontFamily?: string;
 }>`
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -35,7 +39,9 @@ export const FontInfoSection = styled.div<{
 export const FontTitle = styled.div`
   font-size: ${setFontSize("max")};
   font-weight: ${setFontWeight("bold")};
-  white-space: nowrap;
+  line-height: ${setLineHeight("medium")};
+  white-space: wrap;
+  word-break: keep-all;
 `;
 
 export const FontInfoBlock = styled.div`
@@ -63,4 +69,12 @@ export const FontInfoItemValue = styled.div`
 export const ActionSection = styled.div`
   display: flex;
   justify-content: flex-end;
+
+  ${({ theme }) => theme.media.mobile`
+    width: 100%;
+  `}
+
+  ${({ theme }) => theme.media.tablet`
+    width: 100%;
+  `}
 `;

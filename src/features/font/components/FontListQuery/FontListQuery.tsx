@@ -89,6 +89,15 @@ export function FontListQuery({
           orderBy: "name",
         }),
     },
+    {
+      key: "view",
+      label: t("조회순"),
+      onClick: () =>
+        handleDispatch({
+          type: "setOrderBy",
+          orderBy: "view",
+        }),
+    },
   ];
 
   const handleMenu = (queryParam: "type" | "license", key: string) => {
@@ -143,7 +152,7 @@ export function FontListQuery({
     }));
   };
 
-  const getDropdownInputValue = (queryParam: "type" | "license") => {
+  const getDropdownInputValue = (queryParam: "type" | "license" | "order") => {
     if (queryParam === "type") {
       switch (query?.fontType?.length) {
         case 0:
@@ -155,7 +164,7 @@ export function FontListQuery({
             query?.fontType?.[0] as FontTypeEnum
           )} ${t("외")} ${(query?.fontType?.length || 0) - 1}${t("개")}`;
       }
-    } else {
+    } else if (queryParam === "license") {
       switch (query?.license?.length) {
         case 0:
           return t("라이센스");
@@ -166,6 +175,15 @@ export function FontListQuery({
             "name",
             query?.license?.[0] as FontLicenseEnum
           )} ${t("외")} ${(query?.license?.length || 0) - 1}${t("개")}`;
+      }
+    } else {
+      switch (query?.orderBy) {
+        case "date":
+          return t("최신순");
+        case "name":
+          return t("이름순");
+        default:
+          return t("조회순");
       }
     }
   };
@@ -213,7 +231,7 @@ export function FontListQuery({
           >
             <a onClick={(e) => e.preventDefault()}>
               <DropdownButton $open={orderByOpen}>
-                {query?.orderBy === "date" ? t("최신순") : t("이름순")}
+                {getDropdownInputValue("order")}
                 {orderByOpen ? <UpOutlined /> : <DownOutlined />}
               </DropdownButton>
             </a>

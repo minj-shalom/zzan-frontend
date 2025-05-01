@@ -78,6 +78,7 @@ export const FontCardHeaderBlock = styled.div`
 `;
 
 export const FontTitle = styled.div`
+  width: fit-content;
   padding: 2px;
   font-size: ${setFontSize("large")};
   font-weight: ${setFontWeight("semiBold")};

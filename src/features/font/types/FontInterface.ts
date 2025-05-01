@@ -12,6 +12,7 @@ export interface FontInterface {
   font_face_list?: FontFaceInterface[];
   download_url: string;
   license: FontLicenseInterface;
+  view: number;
   created_at: string;
   updated_at?: string;
 }

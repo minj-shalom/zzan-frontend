@@ -1,3 +1,4 @@
+export * from "./CreateFontViewLogDto";
 export * from "./FontFaceInterface";
 export * from "./FontInterface";
 export * from "./FontLicenseCategoryInterface";

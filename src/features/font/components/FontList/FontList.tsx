@@ -16,8 +16,12 @@ import { fontListInitialQuery } from "@/constants";
 import { FontListQuery } from "../FontListQuery";
 import { Spinner } from "@/components";
 import { debounce } from "lodash";
+import { useRouter, useSearchParams } from "next/navigation";
+import { FontLicenseEnum, FontTypeEnum } from "../../types";
 
 export function FontList() {
+  const searchParams = useSearchParams();
+  const router = useRouter();
   const { ref, inView } = useInView();
 
   const [query, dispatch] = useQueryParams(fontListInitialQuery);
@@ -34,18 +38,24 @@ export function FontList() {
   const [debouncedPreviewText, setDebouncedPreviewText] = useState("");
   const [fontSize, setFontSize] = useState(30);
 
-  const handlePagination = (page: number) => {
-    dispatch({
-      type: "pageMove",
-      page: page - 1,
-      pageSize: fontListInitialQuery?.limit,
-    });
-  };
+  const handlePagination = useCallback(
+    (page: number) => {
+      dispatch({
+        type: "pageMove",
+        page: page - 1,
+        pageSize: fontListInitialQuery?.limit,
+      });
+    },
+    [dispatch]
+  );
 
-  const handleDispatch = (action: QueryParamsActions) => {
-    handlePagination(1);
-    dispatch(action);
-  };
+  const handleDispatch = useCallback(
+    (action: QueryParamsActions) => {
+      handlePagination(1);
+      dispatch(action);
+    },
+    [dispatch, handlePagination]
+  );
 
   const handleFontTypeOpen = (state: boolean) => {
     setFontTypeOpen(state);
@@ -84,6 +94,83 @@ export function FontList() {
       fetchNextPage();
     }
   }, [inView, hasNextPage, fetchNextPage]);
+
+  useEffect(() => {
+    const orderBy = searchParams.get("orderBy");
+    const fontType = searchParams.get("fontType");
+    const fontWeight = searchParams.get("fontWeight");
+    const license = searchParams.get("license");
+
+    const validOrderBy = ["date", "name", "view"];
+    const validFontTypes = Object.values(FontTypeEnum);
+    const validLicenses = Object.values(FontLicenseEnum);
+
+    const actions: QueryParamsActions[] = [];
+
+    // ✅ orderBy
+    if (!validOrderBy.includes(orderBy || "")) {
+      actions.push({ type: "setOrderBy", orderBy: "date" });
+    } else if (query.orderBy !== orderBy) {
+      actions.push({ type: "setOrderBy", orderBy: orderBy || "date" });
+    }
+
+    // ✅ fontType
+    if (fontType) {
+      try {
+        const parsed = JSON.parse(fontType);
+        if (Array.isArray(parsed)) {
+          const filtered = parsed.filter((v) => validFontTypes.includes(v));
+          if (
+            JSON.stringify(query.fontType?.sort()) !==
+            JSON.stringify(filtered.sort())
+          ) {
+            actions.push({ type: "setFontType", fontType: filtered });
+          }
+        }
+      } catch {
+        // 잘못된 JSON이므로 무시
+      }
+    }
+
+    // ✅ fontWeight
+    const weightNum = Number(fontWeight);
+    if (!Number.isInteger(weightNum) || weightNum < 1 || weightNum > 9) {
+      actions.push({ type: "setFontWeight", fontWeight: 1 });
+    } else if (query.fontWeight !== weightNum) {
+      actions.push({ type: "setFontWeight", fontWeight: weightNum });
+    }
+
+    // ✅ license
+    if (license) {
+      try {
+        const parsed = JSON.parse(license);
+        if (Array.isArray(parsed)) {
+          const filtered = parsed.filter((v) => validLicenses.includes(v));
+          if (
+            JSON.stringify(query.license?.sort()) !==
+            JSON.stringify(filtered.sort())
+          ) {
+            actions.push({ type: "setLicense", license: filtered });
+          }
+        }
+      } catch {
+        // 잘못된 JSON이므로 무시
+      }
+    }
+
+    actions.forEach(dispatch);
+  }, []);
+
+  useEffect(() => {
+    router.push(
+      `/all?orderBy=${query?.orderBy}&fontType=${JSON.stringify(
+        query?.fontType
+      )}&fontWeight=${query?.fontWeight}&license=${JSON.stringify(
+        query?.license
+      )}`,
+      { scroll: false }
+    );
+  }, [query]);
 
   return (
     <FontListContainer>

@@ -1,7 +1,7 @@
 "use client";
 
 import { Spinner } from "@/components";
-import { useGetFontDetail } from "../../api";
+import { useCreateFontViewLog, useGetFontDetail } from "../../api";
 import {
   FontDetailContainer,
   FontDetailContent,
@@ -13,13 +13,29 @@ import { FontPreview } from "../FontPreview";
 import { WebFont } from "../WebFont";
 import { FontLicenseContent } from "../FontLicenseContent";
 import { FontLicenseCategory } from "../FontLicenseCategory";
+import { useEffect } from "react";
+import { useFingerprint } from "@/hooks";
 
 type FontDetailProps = {
   fontId: number;
 };
 
 export function FontDetail({ fontId }: FontDetailProps) {
+  const { fingerprint } = useFingerprint();
+
   const { data, isLoading } = useGetFontDetail(fontId);
+  const { mutate: createFontViewLog } = useCreateFontViewLog();
+
+  useEffect(() => {
+    if (data && fingerprint) {
+      createFontViewLog({
+        font_id: String(fontId),
+        createFontViewLogDto: {
+          fingerprint,
+        },
+      });
+    }
+  }, [data, fontId, fingerprint, createFontViewLog]);
 
   if (isLoading) {
     return <Spinner />;
