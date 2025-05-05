@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ZZAN ❤️
 
-## Getting Started
+It is a ZZAN service. This service was created using React. Developed with ❤️ by [minj_shalom](https://github.com/minj-shalom). If you love our project please star ⭐️ our repo!
 
-First, run the development server:
+[View Demo](https://zzan.minj-shalom.dev/) | [Download](https://github.com/minj-shalom/zzan-frontend/archive/refs/heads/master.zip) | [More Repositories](https://github.com/minj-shalom?tab=repositories)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Features
+
+ZZAN includes following features:
+
+- Find a font.
+- Try a font.
+
+## Release Note
+
+| version |    date    | change history         |
+| :-----: | :--------: | ---------------------- |
+| v1.0.0  | 2025.05.05 | First regular release. |
+
+## Installation
+
+1. Clone repository.
+
+```shell
+git clone https://github.com/minj-shalom/zzan-frontend.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Get in the project folder.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```shell
+cd zzan-frontend
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3. Install dependencies via npm or yarn.
 
-## Learn More
+```shell
+npm install
+```
 
-To learn more about Next.js, take a look at the following resources:
+```shell
+yarn install
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Quick start
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Run development server.
 
-## Deploy on Vercel
+```shell
+npm run dev
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```shell
+yarn dev
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Support
+
+If you need help, please email [contact@minj-shalom.dev](mailto:contact@minj-shalom.dev).
+
+## Version
+
+ZZAN v1.0.0
