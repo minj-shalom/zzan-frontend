@@ -9,7 +9,7 @@ ENV NEXT_PUBLIC_API_ENDPOINT=${NEXT_PUBLIC_API_ENDPOINT}
 ENV NEXT_PUBLIC_GITHUB_URL=${NEXT_PUBLIC_GITHUB_URL}
 ENV NEXT_PUBLIC_CONTACT_EMAIL=${NEXT_PUBLIC_CONTACT_EMAIL}
 
-COPY package.json package-lock.json ./
+COPY package.json yarn.lock ./
 RUN yarn install && yarn cache clean
 
 COPY . .
