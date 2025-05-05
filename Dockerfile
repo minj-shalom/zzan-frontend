@@ -31,4 +31,4 @@ FROM builder AS development
 CMD ["yarn", "start:dev"]
 
 FROM builder AS production
-CMD ["yarn", "start"]
+CMD ["yarn", "start", "-p", "5173"]
