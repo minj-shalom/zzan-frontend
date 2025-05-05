@@ -3,11 +3,11 @@ import styled from "styled-components";
 export const MainLayoutContainer = styled.div`
   width: 100dvw;
   height: 100dvh;
-  overflow: auto;
 `;
 
 export const MainLayoutBlock = styled.div`
   min-height: calc(100dvh - var(--header-height));
+  margin-top: var(--header-height);
   display: flex;
   flex-direction: column;
   flex: 1;

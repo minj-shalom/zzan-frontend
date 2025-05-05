@@ -9,7 +9,7 @@ import Link from "next/link";
 import styled, { css } from "styled-components";
 
 export const MainHeaderContainer = styled.div`
-  position: sticky;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
