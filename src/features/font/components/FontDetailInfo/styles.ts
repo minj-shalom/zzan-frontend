@@ -41,7 +41,6 @@ export const FontTitle = styled.div`
   font-weight: ${setFontWeight("bold")};
   line-height: ${setLineHeight("medium")};
   white-space: wrap;
-  word-break: keep-all;
 `;
 
 export const FontInfoBlock = styled.div`
