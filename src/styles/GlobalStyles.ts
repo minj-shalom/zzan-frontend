@@ -140,6 +140,11 @@ ${reset}
     -o-user-drag: none;
   }
 
+  table, th, td {
+    background-color: ${({ theme }) => theme.background} !important;
+    color: ${({ theme }) => theme.text} !important;
+  }
+
   .ant-dropdown {
     border: 1px solid #d9d9d9 !important;
     border-radius: var(--border-radius-normal) !important;

@@ -15,7 +15,7 @@ export const MainLayoutBlock = styled.div`
 
 export const PageContainer = styled.div`
   height: 100%;
-  padding: 0 16px 24px;
+  padding: 0 0 24px;
   display: flex;
   flex-direction: column;
   flex: 1;

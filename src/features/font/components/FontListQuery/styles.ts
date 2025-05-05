@@ -11,7 +11,7 @@ export const FontListQueryContainer = styled.div`
   z-index: 1000;
   width: 100%;
   margin-bottom: -24px;
-  padding: 24px 0;
+  padding: 24px 32px;
   display: flex;
   flex-direction: column;
   gap: 8px;

@@ -3,7 +3,7 @@
 import styled, { css } from "styled-components";
 
 export const FontDetailContainer = styled.div`
-  padding: 40px 16px 0;
+  padding: 40px 32px 0;
   display: flex;
   flex-direction: column;
   gap: 48px;

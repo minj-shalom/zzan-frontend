@@ -6,7 +6,6 @@ import styled from "styled-components";
 
 export const FontListContainer = styled.div`
   height: 100%;
-  padding: 0 16px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,9 +15,18 @@ export const FontListContainer = styled.div`
 
 export const CardSection = styled.div`
   width: 100%;
+  padding: 0 32px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
   grid-gap: 16px;
+
+  ${({ theme }) => theme.media.mobile`
+    grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+  `}
+
+  ${({ theme }) => theme.media.tablet`
+    grid-template-columns: repeat(auto-fill, minmax(296px, 1fr));
+  `}
 `;
 
 export const ScrollIndicator = styled.div`
