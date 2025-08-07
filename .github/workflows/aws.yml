@@ -70,7 +70,7 @@ jobs:
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            cd /home/ubuntu/minj-shalom
+            cd /home/ubuntu/minj-shalom-deployments
             echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
             docker-compose -f docker-compose.production.yml pull
             docker-compose -f docker-compose.production.yml up -d
